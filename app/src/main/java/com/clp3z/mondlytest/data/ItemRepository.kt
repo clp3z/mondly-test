@@ -1,6 +1,8 @@
 package com.clp3z.mondlytest.data
 
+import com.clp3z.mondlytest.entity.Error
 import com.clp3z.mondlytest.entity.Item
+import com.clp3z.mondlytest.framework.common.tryCall
 import com.clp3z.mondlytest.framework.persistence.model.LocalItem
 import kotlinx.coroutines.flow.Flow
 
@@ -11,12 +13,18 @@ class ItemRepository(
 
     val items: Flow<List<Item>> = localDataSource.getAllItems()
 
-    suspend fun retrieveItems() {
+    suspend fun retrieveItems(): Error? = tryCall {
         if (localDataSource.isEmpty()) {
-            val items = remoteDataSource.getItems().toLocalItems()
-            localDataSource.addItems(items)
-        }
-    }
+            remoteDataSource.getItems()
+                .fold(
+                    ifLeft = { return it },
+                    ifRight = { localDataSource.addItems(it.toLocalItems()) }
+                )
+            }
+    }.fold(
+        ifLeft = { it },
+        ifRight = { null }
+    )
 
     suspend fun getItemById(id: Int): Flow<Item> = localDataSource.getItem(id)
 }
