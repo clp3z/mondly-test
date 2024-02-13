@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("org.jetbrains.kotlin.kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -70,7 +71,7 @@ dependencies {
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")

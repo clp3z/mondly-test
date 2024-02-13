@@ -7,8 +7,11 @@ import com.clp3z.mondlytest.entity.Item
 import com.clp3z.mondlytest.framework.common.tryCall
 import com.clp3z.mondlytest.framework.remote.api.RemoteService
 import com.clp3z.mondlytest.framework.remote.model.RemoteItem
+import javax.inject.Inject
 
-class ItemRemoteDatasource(private val remoteService: RemoteService) : RemoteDataSource {
+class RemoteDataSourceImpl @Inject constructor(
+    private val remoteService: RemoteService
+) : RemoteDataSource {
 
     override suspend fun getItems(): Either<Error, List<Item>> = tryCall {
         remoteService

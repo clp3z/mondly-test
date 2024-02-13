@@ -8,8 +8,11 @@ import com.clp3z.mondlytest.framework.persistence.dao.ItemDAO
 import com.clp3z.mondlytest.framework.persistence.model.LocalItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class ItemLocalDataSource(private val dao: ItemDAO) : LocalDataSource {
+class LocalDataSourceImpl @Inject constructor(
+    private val dao: ItemDAO
+) : LocalDataSource {
 
     override fun getAllItems(): Flow<List<Item>> = dao.getAllItems().map { it.toItems() }
 

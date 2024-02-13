@@ -15,12 +15,11 @@ class ItemRepository(
 
     suspend fun retrieveItems(): Error? = tryCall {
         if (localDataSource.isEmpty()) {
-            remoteDataSource.getItems()
-                .fold(
-                    ifLeft = { return it },
-                    ifRight = { localDataSource.addItems(it.toLocalItems()) }
-                )
-            }
+            remoteDataSource.getItems().fold(
+                ifLeft = { return it },
+                ifRight = { localDataSource.addItems(it.toLocalItems()) }
+            )
+        }
     }.fold(
         ifLeft = { it },
         ifRight = { null }
