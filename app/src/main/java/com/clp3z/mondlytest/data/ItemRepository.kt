@@ -5,8 +5,9 @@ import com.clp3z.mondlytest.entity.Item
 import com.clp3z.mondlytest.framework.common.tryCall
 import com.clp3z.mondlytest.framework.persistence.model.LocalItem
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ItemRepository(
+class ItemRepository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) {
@@ -25,7 +26,7 @@ class ItemRepository(
         ifRight = { null }
     )
 
-    suspend fun getItemById(id: Int): Flow<Item> = localDataSource.getItem(id)
+    fun getItemById(id: Int): Flow<Item> = localDataSource.getItem(id)
 }
 
 private fun List<Item>.toLocalItems() = map { it.toLocalItem() }
