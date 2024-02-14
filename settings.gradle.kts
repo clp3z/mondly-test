@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MondlyTest"
 include(":app")
- 
+include(":entity")
+include(":data")
+include(":domain")

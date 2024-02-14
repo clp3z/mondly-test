@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    // Modules
+    implementation(project(":entity"))
+    implementation(project(":data"))
 
     // Core
     implementation("androidx.core:core-ktx:1.12.0")

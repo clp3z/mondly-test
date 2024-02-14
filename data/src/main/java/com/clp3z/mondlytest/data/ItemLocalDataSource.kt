@@ -2,16 +2,15 @@ package com.clp3z.mondlytest.data
 
 import com.clp3z.mondlytest.entity.Error
 import com.clp3z.mondlytest.entity.Item
-import com.clp3z.mondlytest.framework.persistence.model.LocalItem
 import kotlinx.coroutines.flow.Flow
 
-interface LocalDataSource {
+interface ItemLocalDataSource {
 
     fun getAllItems(): Flow<List<Item>>
 
     fun getItem(id: Int): Flow<Item>
 
-    suspend fun addItems(items: List<LocalItem>): Error?
+    suspend fun addItems(items: List<Item>): Error?
 
     suspend fun isEmpty(): Boolean
 }
