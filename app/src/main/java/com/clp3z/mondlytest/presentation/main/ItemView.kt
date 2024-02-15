@@ -37,6 +37,7 @@ fun ItemView(
     Card(modifier = modifier.clickable { onClick() }) {
         Column {
             val crossfadeColor = if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray
+            val errorId = if (isSystemInDarkTheme()) R.drawable.error else R.drawable.placeholder
             AsyncImage(
                 modifier = Modifier
                     .height(dimensionResource(id = R.dimen.cell_height))
@@ -45,7 +46,7 @@ fun ItemView(
                     .data(item.image)
                     .crossfade(1500)
                     .build(),
-                error = painterResource(id = R.drawable.error),
+                error = painterResource(id = errorId),
                 contentScale = ContentScale.Crop,
                 contentDescription = null
             )

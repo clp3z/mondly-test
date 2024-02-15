@@ -17,7 +17,7 @@ import com.clp3z.mondlytest.presentation.common.MondlyTestScreen
 
 @Composable
 fun MainScreen(
-    onMediaClick: (Item) -> Unit,
+    onItemClick: (Item) -> Unit,
     viewModel: MainViewModel = hiltViewModel()
 ) {
     viewModel.onViewReady()
@@ -35,7 +35,7 @@ fun MainScreen(
             backgroundColor = MaterialTheme.colors.background
         ) {
             ItemList(
-                onItemClick = onMediaClick,
+                onItemClick = onItemClick,
                 modifier = Modifier.padding(it),
                 isLoading = viewState.isLoading,
                 items = viewState.items,
