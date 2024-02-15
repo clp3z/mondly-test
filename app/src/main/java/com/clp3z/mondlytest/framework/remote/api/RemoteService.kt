@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface RemoteService {
 
-    @GET("mondly_android_code_task_json")
+    @GET("/mondly_android_code_task_json")
     suspend fun getItems(): RemoteResult
 }

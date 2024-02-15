@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MondlyTest</string>
+
+    <string name="network_error">Network error: %1$d</string>
+    <string name="unknown_error">Unknown error: %1$s</string>
+    <string name="application_error">Application error</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="cell_min_width">170dp</dimen>
+    <dimen name="cell_height">130dp</dimen>
+</resources>

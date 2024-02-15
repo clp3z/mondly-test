@@ -17,7 +17,7 @@ class ItemRemoteDataSourceImpl @Inject constructor(
         remoteService
             .getItems()
             .dataCollection
-            .map { it.toItem() }
+            .map { it.item.toItem() }
     }
 }
 

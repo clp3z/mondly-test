@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class LocalItem (
-    @PrimaryKey val id: String,
+    @PrimaryKey val id: Int,
     val name: String,
     val description: String,
     val image: String

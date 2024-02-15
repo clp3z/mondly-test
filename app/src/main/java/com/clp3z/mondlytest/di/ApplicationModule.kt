@@ -51,9 +51,9 @@ object ApplicationModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit
             .Builder()
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://europe-west1-mondly-workflows.cloudfunctions.net/")
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Provides

@@ -37,12 +37,21 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
 }
 
 dependencies {
     // Modules
     implementation(project(":entity"))
     implementation(project(":data"))
+    implementation(project(":domain"))
 
     // Core
     implementation("androidx.core:core-ktx:1.12.0")
@@ -75,6 +84,7 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
