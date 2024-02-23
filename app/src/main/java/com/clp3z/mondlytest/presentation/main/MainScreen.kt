@@ -29,7 +29,8 @@ fun MainScreen(
                 TopAppBar(
                     title = {
                         Text(text = stringResource(id = R.string.app_name))
-                    }
+                    },
+                    backgroundColor = MaterialTheme.colors.primary
                 )
             },
             backgroundColor = MaterialTheme.colors.background
