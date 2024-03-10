@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 class GetItemUseCase @Inject constructor(private val itemsRepository: ItemRepository) {
 
-    fun invoke(id: Int): Flow<Item> = itemsRepository.getItemById(id)
+    operator fun invoke(id: Int): Flow<Item> = itemsRepository.getItemById(id)
 }

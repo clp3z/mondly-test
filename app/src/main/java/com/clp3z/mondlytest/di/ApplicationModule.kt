@@ -30,7 +30,7 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideMovieDAO(database: Database): ItemDAO = database.itemDao()
+    fun provideItemsDAO(database: Database): ItemDAO = database.itemDao()
 
     @Provides
     @Singleton
@@ -41,18 +41,16 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(httpInterceptor: HttpLoggingInterceptor): OkHttpClient =
-        OkHttpClient
-            .Builder()
+        OkHttpClient.Builder()
             .addInterceptor(httpInterceptor)
             .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit
-            .Builder()
+        Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://europe-west1-mondly-workflows.cloudfunctions.net/")
+            .baseUrl("https://europe-west1-mondly-workflows.cloudfunctions.net")
             .client(okHttpClient)
             .build()
 
