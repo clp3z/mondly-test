@@ -32,23 +32,25 @@ import com.clp3z.mondlytest.presentation.common.item
 fun ItemView(
     item: Item,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(modifier = modifier.clickable { onClick() }) {
         Column {
             val crossfadeColor = if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray
             val errorId = if (isSystemInDarkTheme()) R.drawable.error else R.drawable.placeholder
             AsyncImage(
-                modifier = Modifier
-                    .height(dimensionResource(id = R.dimen.cell_height))
-                    .background(crossfadeColor),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(item.image)
-                    .crossfade(1500)
-                    .build(),
+                modifier =
+                    Modifier
+                        .height(dimensionResource(id = R.dimen.cell_height))
+                        .background(crossfadeColor),
+                model =
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(item.image)
+                        .crossfade(1500)
+                        .build(),
                 error = painterResource(id = errorId),
                 contentScale = ContentScale.Crop,
-                contentDescription = null
+                contentDescription = null,
             )
             ItemTitle(item)
         }
@@ -59,16 +61,17 @@ fun ItemView(
 private fun ItemTitle(item: Item) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colors.secondary)
-            .padding(dimensionResource(id = R.dimen.padding_small))
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.secondary)
+                .padding(dimensionResource(id = R.dimen.padding_small)),
     ) {
         Text(
             text = item.name,
             color = MaterialTheme.colors.onSecondary,
             fontWeight = FontWeight.SemiBold,
-            fontSize = MaterialTheme.typography.caption.fontSize
+            fontSize = MaterialTheme.typography.caption.fontSize,
         )
     }
 }
@@ -79,7 +82,7 @@ private fun ItemViewPreview() {
     MondlyTestScreen {
         ItemView(
             item = item,
-            onClick = {}
+            onClick = {},
         )
     }
 }

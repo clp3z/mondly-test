@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class RemoteItem(
     @SerializedName("id") val id: Int,
-    @SerializedName("attributes") val attributes: RemoteAttribute
+    @SerializedName("attributes") val attributes: RemoteAttribute,
 )

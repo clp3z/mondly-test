@@ -18,7 +18,7 @@ import com.clp3z.mondlytest.presentation.common.MondlyTestScreen
 @Composable
 fun MainScreen(
     onItemClick: (Item) -> Unit,
-    viewModel: MainViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel(),
 ) {
     viewModel.onViewReady()
     val viewState by viewModel.viewState.collectAsState()
@@ -30,17 +30,17 @@ fun MainScreen(
                     title = {
                         Text(text = stringResource(id = R.string.app_name))
                     },
-                    backgroundColor = MaterialTheme.colors.primary
+                    backgroundColor = MaterialTheme.colors.primary,
                 )
             },
-            backgroundColor = MaterialTheme.colors.background
+            backgroundColor = MaterialTheme.colors.background,
         ) {
             ItemList(
                 onItemClick = onItemClick,
                 modifier = Modifier.padding(it),
                 isLoading = viewState.isLoading,
                 items = viewState.items,
-                error = viewState.error
+                error = viewState.error,
             )
         }
     }

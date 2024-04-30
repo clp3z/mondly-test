@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class LocalItem (
+data class LocalItem(
     @PrimaryKey val id: Int,
     val name: String,
     val description: String,
-    val image: String
+    val image: String,
 )

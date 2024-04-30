@@ -25,7 +25,7 @@ object ApplicationModule {
         Room.databaseBuilder(
             context = application,
             klass = Database::class.java,
-            name = "items-database"
+            name = "items-database",
         ).build()
 
     @Provides
@@ -56,6 +56,5 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideRemoteService(retrofit: Retrofit): RemoteService =
-        retrofit.create(RemoteService::class.java)
+    fun provideRemoteService(retrofit: Retrofit): RemoteService = retrofit.create(RemoteService::class.java)
 }

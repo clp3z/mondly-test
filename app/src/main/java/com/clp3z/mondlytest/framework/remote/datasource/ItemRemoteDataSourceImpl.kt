@@ -9,21 +9,24 @@ import com.clp3z.mondlytest.framework.remote.api.RemoteService
 import com.clp3z.mondlytest.framework.remote.model.RemoteItem
 import javax.inject.Inject
 
-class ItemRemoteDataSourceImpl @Inject constructor(
-    private val remoteService: RemoteService
-) : ItemRemoteDataSource {
-
-    override suspend fun getItems(): Either<Error, List<Item>> = tryCall {
-        remoteService
-            .getItems()
-            .dataCollection
-            .map { it.item.toItem() }
+class ItemRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val remoteService: RemoteService,
+    ) : ItemRemoteDataSource {
+        override suspend fun getItems(): Either<Error, List<Item>> =
+            tryCall {
+                remoteService
+                    .getItems()
+                    .dataCollection
+                    .map { it.item.toItem() }
+            }
     }
-}
 
-private fun RemoteItem.toItem() = Item(
-    id = id,
-    name = attributes.name,
-    description = attributes.description,
-    image = attributes.imageInfo.imageUrl
-)
+private fun RemoteItem.toItem() =
+    Item(
+        id = id,
+        name = attributes.name,
+        description = attributes.description,
+        image = attributes.imageInfo.imageUrl,
+    )

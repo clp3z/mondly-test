@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDAO {
-
     @Query("SELECT * FROM LocalItem")
     fun getAllItems(): Flow<List<LocalItem>>
 
@@ -22,4 +21,3 @@ interface ItemDAO {
     @Query("SELECT COUNT(id) FROM LocalItem")
     suspend fun itemsCount(): Int
 }
-

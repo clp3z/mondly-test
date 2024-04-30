@@ -16,33 +16,34 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val getItemsUseCase: GetItemsUseCase,
-    private val retrieveItemsUseCase: RetrieveItemsUseCase
-): ViewModel() {
+class MainViewModel
+    @Inject
+    constructor(
+        private val getItemsUseCase: GetItemsUseCase,
+        private val retrieveItemsUseCase: RetrieveItemsUseCase,
+    ) : ViewModel() {
+        data class ViewState(
+            val isLoading: Boolean = false,
+            val items: List<Item> = emptyList(),
+            val error: Error? = null,
+        )
 
-    data class ViewState(
-        val isLoading: Boolean = false,
-        val items: List<Item> = emptyList(),
-        val error: Error? = null
-    )
+        private val _viewState = MutableStateFlow(ViewState())
+        val viewState get() = _viewState.asStateFlow()
 
-    private val _viewState = MutableStateFlow(ViewState())
-    val viewState get() = _viewState.asStateFlow()
+        init {
+            viewModelScope.launch {
+                getItemsUseCase()
+                    .catch { throwable -> _viewState.update { it.copy(error = throwable.toError()) } }
+                    .collect { items -> _viewState.update { it.copy(items = items) } }
+            }
+        }
 
-    init {
-        viewModelScope.launch {
-            getItemsUseCase()
-                .catch { throwable -> _viewState.update { it.copy(error = throwable.toError()) } }
-                .collect { items -> _viewState.update { it.copy(items = items) } }
+        fun onViewReady() {
+            viewModelScope.launch {
+                _viewState.update { it.copy(isLoading = true) }
+                val error = retrieveItemsUseCase()
+                _viewState.update { it.copy(isLoading = false, error = error) }
+            }
         }
     }
-
-    fun onViewReady() {
-        viewModelScope.launch {
-            _viewState.update { it.copy(isLoading = true) }
-            val error = retrieveItemsUseCase()
-            _viewState.update { it.copy(isLoading = false, error = error) }
-        }
-    }
-}

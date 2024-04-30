@@ -7,16 +7,15 @@ import javax.inject.Inject
 
 class ItemRepository @Inject constructor(
     private val itemLocalDataSource: ItemLocalDataSource,
-    private val itemRemoteDataSource: ItemRemoteDataSource
+    private val itemRemoteDataSource: ItemRemoteDataSource,
 ) {
-
     val items: Flow<List<Item>> = itemLocalDataSource.getAllItems()
 
     suspend fun retrieveItems(): Error? {
         if (itemLocalDataSource.isEmpty()) {
             itemRemoteDataSource.getItems().fold(
                 ifLeft = { return it },
-                ifRight = { itemLocalDataSource.addItems(it) }
+                ifRight = { itemLocalDataSource.addItems(it) },
             )
         }
         return null

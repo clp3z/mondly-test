@@ -29,20 +29,20 @@ fun ErrorMessage(error: Error) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             imageVector = Icons.Default.Warning,
             contentDescription = message,
             modifier = Modifier.size(86.dp),
-            tint = MaterialTheme.colors.error
+            tint = MaterialTheme.colors.error,
         )
         Text(
             text = message,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
             color = MaterialTheme.colors.error,
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
         )
     }
 }

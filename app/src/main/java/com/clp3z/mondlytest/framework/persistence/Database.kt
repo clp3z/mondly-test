@@ -8,9 +8,8 @@ import com.clp3z.mondlytest.framework.persistence.model.LocalItem
 @Database(
     entities = [LocalItem::class],
     version = 1,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class Database : RoomDatabase() {
-
     abstract fun itemDao(): ItemDAO
 }

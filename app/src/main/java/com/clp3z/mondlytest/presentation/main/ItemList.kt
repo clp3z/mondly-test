@@ -27,12 +27,12 @@ fun ItemList(
     isLoading: Boolean,
     items: List<Item>,
     error: Error?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     if (error == null) {
         Box(
             modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             if (isLoading) {
                 CircularProgressIndicator()
@@ -42,12 +42,12 @@ fun ItemList(
                     verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small)),
                     horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small)),
                     columns = GridCells.Adaptive(dimensionResource(id = R.dimen.cell_min_width)),
-                    modifier = modifier
+                    modifier = modifier,
                 ) {
                     items(items) { item ->
                         ItemView(
                             item = item,
-                            onClick = { onItemClick(item) }
+                            onClick = { onItemClick(item) },
                         )
                     }
                 }
@@ -67,7 +67,7 @@ fun MediaListPreview() {
             onItemClick = {},
             isLoading = false,
             items = items,
-            error = null
+            error = null,
         )
     }
 }

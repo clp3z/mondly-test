@@ -10,30 +10,35 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 
-private val DarkColorPalette = darkColors(
-    primary = darkPrimaryColor,
-    secondary = darkSecondaryColor,
-    onSecondary = darkOnSecondaryColor,
-    background = darkBackgroundColor
-)
+private val DarkColorPalette =
+    darkColors(
+        primary = darkPrimaryColor,
+        secondary = darkSecondaryColor,
+        onSecondary = darkOnSecondaryColor,
+        background = darkBackgroundColor,
+    )
 
-private val LightColorPalette = lightColors(
-    primary = primaryColor,
-    secondary = secondaryColor,
-    onSecondary = onSecondaryColor,
-    background = backgroundColor
-)
+private val LightColorPalette =
+    lightColors(
+        primary = primaryColor,
+        secondary = secondaryColor,
+        onSecondary = onSecondaryColor,
+        background = backgroundColor,
+    )
 
 @Composable
 fun MondlyTestTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content:
+        @Composable()
+        () -> Unit,
 ) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+    val colors =
+        if (darkTheme) {
+            DarkColorPalette
+        } else {
+            LightColorPalette
+        }
 
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -47,6 +52,6 @@ fun MondlyTestTheme(
         colors = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }
